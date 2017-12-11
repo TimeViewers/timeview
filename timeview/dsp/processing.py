@@ -7,10 +7,6 @@ import numpy as np
 from scipy import signal
 
 
-from rpy2 import robjects
-from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
-
-
 from . import tracking
 from . import dsp
 from . import viterbi
@@ -494,6 +490,8 @@ class PeakTrackerActiveOnly(PeakTracker):
         return peak,
 
 
+# from rpy2 import robjects
+# from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 # class ExampleR(Processor):
 #     name = 'Example R plug-in'
 #     acquire = {'activity partition': tracking.Partition,
@@ -531,42 +529,3 @@ class PeakTrackerActiveOnly(PeakTracker):
 #                                  .with_suffix(
 #                                      tracking.Partition.default_suffix))
 #         return par,
-
-
-class RodentCallClassifier(Processor):
-    name = 'Rodent Call Classifier'
-    acquire = {'activity partition': tracking.Partition,
-               'peak track': tracking.TimeValue}
-
-    def __init__(self):
-        super().__init__()
-        self.parameters = {}
-
-    def process(self, **kwargs) -> Tuple[tracking.Partition]:
-        Processor.process(self, **kwargs)
-        par: tracking.Partition = self.data['activity partition']
-        tmv: tracking.TimeValue = self.data['peak track']
-        fs = max(par.fs, tmv.fs)  # don't loose any resolution
-        par = par.resample(fs)
-        tmv = tmv.resample(fs)
-        self.progressTracker.update(10)
-        with open(Path(__file__).resolve().parent / 'x-utils-final.R') as f:
-            script = f.read()
-        self.progressTracker.update(11)
-        pack = SignatureTranslatedAnonymousPackage(script, 'pack')
-        self.progressTracker.update(12)
-        pack.setup()
-        self.progressTracker.update(13)
-        value =\
-            pack.predict_rodent_class(robjects.FloatVector(par.time / par.fs),
-                                      robjects.FloatVector(par.value),
-                                      robjects.FloatVector(tmv.time / tmv.fs),
-                                      robjects.FloatVector(tmv.value),
-                                      par.fs)
-        self.progressTracker.update(90)
-        par = tracking.Partition(par.time, np.array(value), fs=fs,
-                                 path=par.path
-                                 .with_name(par.path.stem + '-class')
-                                 .with_suffix(
-                                     tracking.Partition.default_suffix))
-        return par,

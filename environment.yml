@@ -1,15 +1,12 @@
 name: timeview
 channels:
 - defaults
-- r
 dependencies:
 - python>=3.6
 - numpy
 - scipy
 - sqlalchemy
 - git
-- r
-- rpy2
 - numba
 - pyqt=5
 - qtpy
