@@ -1,0 +1,7 @@
+.DS_Store
+*.py[c|o]
+*pycache*
+.idea
+miniconda*
+config.json
+dataset.db
