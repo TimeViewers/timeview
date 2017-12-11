@@ -7,15 +7,14 @@ Timeview is a cross-platform (Windows, MacOS, Linux) desktop application for vie
 Waveforms, Time-Value data, and Segmentation data.
 These data can easily be analyzed or manipulated using a library of built-in processors;
 for example, a linear filter can operate on a waveform, or an activity detector can create a segmentation from a waveform.
-Processors can be easily customized or created using the Python or R language.
+Processors can be easily customized or created created from scratch.
 
 
 Installation
 -
-Unzip the TimeView.zip file you have received at a location of your choice.
 Navigate to the "bin" folder, and then to the folder that represents your Operating System.
 Ensure your internet connection is live, and then run the "install" script.
-Approximately 2GB of data will be downloaded during installation.
+Approximately 2 GB of data will be downloaded during installation.
 The entire process may take some time, depending on your computer and internet connection.
 
 
