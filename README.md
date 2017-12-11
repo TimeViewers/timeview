@@ -1,6 +1,8 @@
 TimeView
 =
 
+![screenshot](doc/source/TimeView.png)
+
 Overview
 -
 Timeview is a cross-platform (Windows, MacOS, Linux) desktop application for viewing and editing
