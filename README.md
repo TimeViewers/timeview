@@ -24,7 +24,7 @@ which contain any number of superimposed *views* (e.g. waveforms, spectrograms, 
 * *Customizable Rendering* of views (e.g. frame_size for spectrogram)
 * *On-the-fly Spectrogram* rendering automatically adjusts frame-rate and FFT-size to calculate information for each available pixel without interpolation
 * *Editable segmentation* (insertion, deletion, modification of boundaries; modification of labels)
-* Basic *processing plug-ins* are provided (e.g. peak tracking, activity detection)
+* Basic *processing plug-ins* are provided (e.g. activity detection, F0-analysis)
 * Processing plug-ins are easily *customizable* or *extendable* using python (briding to R via `rpy2` is also possible, an example is provided)
 * API allows accessing processing plugins for *batch file processing* or *preconfiguring the GUI* (examples are provided)
 * *EDF-file-format* support
