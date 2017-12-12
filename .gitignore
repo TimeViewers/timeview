@@ -5,3 +5,4 @@
 miniconda*
 timeview/gui/config.json
 timeview/manager/dataset.db
+dev
