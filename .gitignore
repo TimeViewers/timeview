@@ -3,5 +3,5 @@
 *pycache*
 .idea
 miniconda*
-config.json
-dataset.db
+timeview/gui/config.json
+timeview/manager/dataset.db
