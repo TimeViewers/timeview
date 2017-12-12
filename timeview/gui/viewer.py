@@ -512,6 +512,7 @@ class Viewer(QtWidgets.QMainWindow):
         x_min, x_max = view.renderer.vb.viewRange()[0]
         if x_min < 0 and delta_x < 0:
             return
+        self.applySync()
         view.renderer.vb.translateBy(x=delta_x)
         self.selectedDisplayPanel.pw.alignViews()
         if self.synchronized:
@@ -524,6 +525,7 @@ class Viewer(QtWidgets.QMainWindow):
         view = self.selectedView
         if view is None:
             return
+        self.applySync()
         center = view.renderer.vb.targetRect().center()
         padding = view.renderer.vb.suggestPadding(pg.ViewBox.XAxis)
         proposed_ranges = [dim * mag_x for dim in view.renderer.vb.viewRange()[0]]
