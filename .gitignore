@@ -4,5 +4,5 @@
 .idea
 miniconda*
 timeview/gui/config.json
-dataset.db
+timeview/manager/dataset.db
 dev
