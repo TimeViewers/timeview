@@ -5,7 +5,7 @@ TimeView
 
 Overview
 -
-Timeview is a cross-platform (Windows, MacOS, Linux) desktop application for viewing and editing
+Timeview is a cross-platform desktop application for viewing and editing
 Waveforms, Time-Value data, and Segmentation data. 
 These data can easily be analyzed or manipulated using a library of built-in processors;
 for example, a linear filter can operate on a waveform, or an activity detector can create a segmentation from a waveform.
