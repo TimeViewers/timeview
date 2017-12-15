@@ -29,6 +29,7 @@ which contain any number of superimposed *views* (e.g. waveforms, spectrograms, 
 * API allows accessing processing plugins for *batch file processing* or *preconfiguring the GUI* (examples are provided)
 * *EDF-file-format* support
 * A *dataset-manager* allows grouping of files into datasets, for quick access to often-used files
+* *Command line* support, for pipelining with other tools, e.g. `sox` 
 
 An introductory video is available at: https://vimeo.com/245480108
 
