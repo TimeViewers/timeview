@@ -15,11 +15,10 @@ def parse(args):
     # ENHANCE: think about how to specify CLI loading configurations in a .cfg file
     if args.configuration == 'default':  # one object per panel
         app = TimeView()
-        for path in args.path:
-            files = Path().glob(path)
-            for i, file in enumerate(files):
-                logging.info(f'Loading {file}')
-                app.add_view_from_file(file, panel_index=i)
+        print(args.path)
+        for i, path in enumerate(args.path):
+            print(f'Loading {path}')
+            app.add_view_from_file(Path(path), panel_index=i)
         app.start()
     elif args.configuration == 'labeling':
         raise NotImplementedError
