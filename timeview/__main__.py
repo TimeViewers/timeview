@@ -15,7 +15,6 @@ def parse(args):
     # ENHANCE: think about how to specify CLI loading configurations in a .cfg file
     if args.configuration == 'default':  # one object per panel
         app = TimeView()
-        print(args.path)
         for i, path in enumerate(args.path):
             print(f'Loading {path}')
             app.add_view_from_file(Path(path), panel_index=i)
