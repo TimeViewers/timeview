@@ -15,7 +15,7 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError, StatementError
 from qtpy import QtCore, uic
-from qtpy.QtWidgets import QApplication, QMainWindow, QFileDialog, QInputDialog, QMessageBox
+from qtpy.QtWidgets import QMainWindow, QFileDialog, QInputDialog, QMessageBox
 import qtawesome as qta
 
 # local
@@ -138,6 +138,8 @@ class ManagerWindow(QMainWindow):
         self.tableViewDataset.clicked.connect(self.clicked_dataset)
         self.tableViewFile.doubleClicked.connect(self.double_clicked_file)
 
+        #self.installEventFilter(self)
+
         # Icons
         self.addDatasetButton.setIcon(qta.icon('fa.plus'))
         self.delDatasetButton.setIcon(qta.icon('fa.minus'))
@@ -165,6 +167,14 @@ class ManagerWindow(QMainWindow):
         # Window Title
         self.setWindowTitle(title)
 
+    def keyPressEvent(self, event):
+        if event.type() == QtCore.QEvent.KeyPress:
+            key = event.key()
+            if key == QtCore.Qt.Key_Return:
+                rows = [index.row() for index in self.tableViewFile.selectedIndexes()]
+                file_names = [self.tableModelFile.qry[row].path for row in rows]
+                for file_name in file_names:
+                    self.viewer.application.add_view_from_file(Path(file_name))
 
     def clicked_dataset(self, q_index):  # refresh table of files
         self.tableModelFile.dataset_id = int(self.tableModelDataset.qry[q_index.row()].id)
@@ -283,9 +293,3 @@ class ManagerWindow(QMainWindow):
                 self.statusBar().showMessage('Deleted file(s).')
             # else: # cancel
                 # self.statusBar().showMessage('No file(s) selected.')
-
-    # def show_error(self, exc):
-        # QMessageBox.information(self, "Error", str(exc), defaultButton=QMessageBox.Ok)
-
-    # def closeEvent(self, _e):
-        # pass

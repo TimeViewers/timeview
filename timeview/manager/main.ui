@@ -21,7 +21,7 @@
     <item>
      <widget class="QLabel" name="datasetsLabel">
       <property name="text">
-       <string>Datasets</string>
+       <string>Datasets (press return to rename)</string>
       </property>
      </widget>
     </item>
@@ -86,7 +86,7 @@
     <item>
      <widget class="QLabel" name="filesLabel">
       <property name="text">
-       <string>Files</string>
+       <string>Files (select one or multiple files, then press return to load)</string>
       </property>
      </widget>
     </item>
