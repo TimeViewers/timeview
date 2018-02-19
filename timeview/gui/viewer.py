@@ -4,7 +4,7 @@ import sys
 import json
 import re
 from pathlib import Path
-from typing import Tuple, List, Optional, DefaultDict, Dict
+from typing import Tuple, List, Optional, DefaultDict, Dict, Union
 from collections import defaultdict
 from timeit import default_timer as timer
 
@@ -930,21 +930,29 @@ class Viewer(QtWidgets.QMainWindow):
 
     @Slot(name='guiAddView')
     def guiAddView(self,
-                   file_name: Optional[str]=None,
+                   file_name: Union[str, List, None]=None,
                    renderer: Optional[str]=None,
                    **kwargs):
         if file_name is None:
             file_name, _ =\
-                QtWidgets.QFileDialog.getOpenFileName(self,
+                QtWidgets.QFileDialog.getOpenFileNames(self,
                                                       "Add Track to Panel",
                                                       self.application.config['working_directory'],
                                                       "Track and EDF Files (*.wav *.lab *.tmv *.edf);;\
                                                       All Files (*)",
                                                       options=QtWidgets.QFileDialog.Options())
-        if file_name:
+        if isinstance(file_name, str):
             # panel_index = self.model.panels.index(self.selectedPanel)
             self.application.add_view_from_file(Path(file_name))
             self.application.config['working_directory'] = str(Path(file_name).parent)
+        elif isinstance(file_name, List):
+            if len(file_name):
+                for f in file_name:
+                    #self.guiAddPanel()  # it's difficult to guess what the user really wants
+                    self.application.add_view_from_file(Path(f))
+                self.application.config['working_directory'] = str(Path(f).parent)
+        else:
+            raise Exception
 
     @Slot(name='guiSaveView')
     def guiSaveView(self):
