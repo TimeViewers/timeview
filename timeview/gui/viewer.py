@@ -967,7 +967,11 @@ class Viewer(QtWidgets.QMainWindow):
         view = self.selectedView
         if view is None:
             return
-        view.track.read(view.track.path.name)  # TODO: doesn't appear to work!?
+        reply = QtWidgets.QMessageBox.question(self, 'Message',
+                                               'Are you sure you want to revert to the contents on disk? All changes since loading will be lost',
+                                               QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.Cancel)
+        if reply == QtWidgets.QMessageBox.Yes:
+            view.track.read(view.track.path.name)  # TODO: doesn't appear to work!?
 
     @Slot(name='guiDelView')
     def guiDelView(self):
