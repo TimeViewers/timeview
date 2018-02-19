@@ -930,7 +930,7 @@ class Viewer(QtWidgets.QMainWindow):
 
     @Slot(name='guiAddView')
     def guiAddView(self,
-                   file_name: Union[str, List, None]=None,
+                   file_name: Union[str, List, Path, None]=None,
                    renderer: Optional[str]=None,
                    **kwargs):
         if file_name is None:
@@ -961,10 +961,11 @@ class Viewer(QtWidgets.QMainWindow):
         if view is None:
             return
         track = view.track
-        file_name, _ = QtWidgets.QFileDialog.getSaveFileName(self,
-                                                             "Save Track",
-                                                             str(Path(self.application.config['working_directory']) / track.path.name),
-                                                             f"Files (*{track.default_suffix})")
+        file_name, _ = \
+            QtWidgets.QFileDialog.getSaveFileName(self,
+                                                  "Save Track",
+                                                  str(Path(self.application.config['working_directory']) / track.path.name),
+                                                  f"Files (*{track.default_suffix})")
         if file_name:
             track.write(file_name)
             track.path = Path(file_name)
@@ -977,11 +978,18 @@ class Viewer(QtWidgets.QMainWindow):
         view = self.selectedView
         if view is None:
             return
-        reply = QtWidgets.QMessageBox.question(self, 'Message',
+        reply = QtWidgets.QMessageBox.question(self,
+                                               'Message',
                                                'Are you sure you want to revert to the contents on disk? All changes since loading will be lost',
                                                QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.Cancel)
         if reply == QtWidgets.QMessageBox.Yes:
-            view.track.read(view.track.path)  # TODO: doesn't appear to work!?
+            track_path = str(view.track.path)
+            view.track = view.track.read(view.track.path)
+            new_track = view.track.read(view.track.path)
+            view.track = new_track
+            view.renderer.track = new_track  # TODO: change to render property that pulls the track from the view
+            view.renderer.reload()
+
 
     @Slot(name='guiDelView')
     def guiDelView(self):
