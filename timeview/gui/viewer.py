@@ -274,9 +274,14 @@ class Viewer(QtWidgets.QMainWindow):
         save_action.setShortcut(QtGui.QKeySequence("Ctrl+S"))
         self.track_menu.addAction(save_action)
 
+        revert_action = QtWidgets.QAction("&Revert…", self)
+        revert_action.triggered.connect(self.guiRevertView)
+        revert_action.setShortcut(QtGui.QKeySequence("Ctrl+R"))
+        self.track_menu.addAction(revert_action)
+
         self.track_menu.addSeparator()
 
-        remove_action = QtWidgets.QAction("&Remove", self)
+        remove_action = QtWidgets.QAction("&Delete", self)
         remove_action.triggered.connect(self.guiDelView)
         remove_action.setShortcut(QtGui.QKeySequence("Ctrl+backspace"))
         self.track_menu.addAction(remove_action)
@@ -956,6 +961,13 @@ class Viewer(QtWidgets.QMainWindow):
             track.write(file_name)
             self.application.config['working_directory'] = str(Path(file_name).parent)
 
+    @Slot(name='guiRevertView')
+    def guiRevertView(self):
+        """identifies the selected view and reverts to contents on disk"""
+        view = self.selectedView
+        if view is None:
+            return
+        view.track.read(view.track.path.name)  # TODO: doesn't appear to work!?
 
     @Slot(name='guiDelView')
     def guiDelView(self):
