@@ -959,6 +959,8 @@ class Viewer(QtWidgets.QMainWindow):
                                                              f"Files (*{track.default_suffix})")
         if file_name:
             track.write(file_name)
+            track.path = Path(file_name)
+            # TODO: update view table to show you name
             self.application.config['working_directory'] = str(Path(file_name).parent)
 
     @Slot(name='guiRevertView')
@@ -971,7 +973,7 @@ class Viewer(QtWidgets.QMainWindow):
                                                'Are you sure you want to revert to the contents on disk? All changes since loading will be lost',
                                                QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.Cancel)
         if reply == QtWidgets.QMessageBox.Yes:
-            view.track.read(view.track.path.name)  # TODO: doesn't appear to work!?
+            view.track.read(view.track.path)  # TODO: doesn't appear to work!?
 
     @Slot(name='guiDelView')
     def guiDelView(self):
