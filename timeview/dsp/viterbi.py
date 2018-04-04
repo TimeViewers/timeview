@@ -4,7 +4,7 @@ import numpy as np
 import numba
 
 
-# @numba.jit((numba.float64[:, :], numba.float64), nopython=True, cache=True)  # eager compilation through function signature
+@numba.jit((numba.float64[:, :], numba.float64), nopython=True, cache=True)  # eager compilation through function signature
 def search_smooth(ftr, smooth):  # 100% function-based
     """P is the number of candidates at each time
     T is the number of available time points"""
