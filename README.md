@@ -36,12 +36,27 @@ An introductory video is available at: https://vimeo.com/245480108
 
 Installation
 -
-Navigate to the "bin" folder, and then to the folder that represents your Operating System.
-Ensure your internet connection is live, and then run the "install" script.
-Approximately 2 GB of data will be downloaded during installation.
-The entire process may take some time, depending on your computer and internet connection.
+From an empty python 3.6 python environment run
 
-Advanced users can skip the installation step, and use their own python installation, as long as all requirements in `environment.yml` are satisfied.
+```
+$ pip install git+https://github.com/lxkain/timeview
+$ timeview
+```
+
+Development Environment
+-
+To configure a development environment to develop timeview, we suggest using `virtualenv`
+
+```
+$ git clone https://github.com/lxkain/timeview.git timeview
+$ virtualenv timeview -p python3
+$ source timeview/bin/activate
+$ pip install -e timeview
+
+# to install test dependencies
+$ pip install -e "timeview[test]
+```
+
 
 Starting the Application
 -
