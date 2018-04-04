@@ -16,7 +16,7 @@ setup(
     description="A GUI application to view and analyze time series signal data",
     author=["Ognyan Moore", "Alex Kain"],
     author_email=['ognyan.moore@gmail.com', 'lxkain@gmail.com'],
-    url='https://github.com/j9ac9k/timeview',
+    url='https://github.com/lxlain/timeview',
     packages=['timeview',
               'timeview.dsp',
               'timeview.gui',
