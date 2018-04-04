@@ -1,6 +1,12 @@
 # Compiled python files
 *.py[c|o]
 
+# Distribution/VirtualENV
+bin/
+dist/
+include/
+lib/
+
 # Cached python files
 *pycache*
 .pytest_cache/
@@ -25,3 +31,4 @@ timeview/manager/dataset.db
 *.orig
 .eggs
 .mypy_cache
+
