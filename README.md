@@ -1,7 +1,7 @@
 TimeView
 =
 
-![screenshot](doc/source/TimeView.png)
+![screenshot](docs/source/TimeView.png)
 
 Overview
 -
