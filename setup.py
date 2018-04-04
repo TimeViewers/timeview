@@ -23,7 +23,7 @@ setup(
               'timeview.manager'],
     entry_points={
         'gui_scripts': [
-            'timeview = timeview:main'
+            'timeview = timeview.__main__'
         ]
     },
     include_package_data=True,
