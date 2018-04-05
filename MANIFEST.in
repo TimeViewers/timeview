@@ -1,0 +1,6 @@
+include timeview/manager/main.ui
+include timeview/manager/dataset.db
+recursive-include timeview/ *.json
+recursive-include timeview/ *.qhc
+recursive-include timeview/ *.qch
+recursive-include timeview/ *.icns

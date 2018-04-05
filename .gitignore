@@ -1,9 +1,34 @@
-.DS_Store
+# Compiled python files
 *.py[c|o]
+
+# Distribution/VirtualENV
+bin/
+dist/
+include/
+lib/
+
+# Cached python files
 *pycache*
+.pytest_cache/
+.cache
+.coverage*
+*.egg-info
+
+# Folder preview
+.DS_Store
+.DS_Store/
+Thumbs.db
+
+# IDE Related
 .idea
-miniconda*
+.code
+
+# App files
 timeview/gui/config.json
 timeview/manager/dataset.db
-dev
-bin/TimeView
+
+# git .orig files
+*.orig
+.eggs
+.mypy_cache
+

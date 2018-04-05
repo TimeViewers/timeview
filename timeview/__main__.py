@@ -8,7 +8,8 @@ import logging
 from pathlib import Path
 import argparse
 
-from .api import TimeView
+# from .api import TimeView
+from timeview.gui import TimeView
 
 
 def parse(args):
