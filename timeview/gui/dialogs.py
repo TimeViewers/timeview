@@ -10,8 +10,8 @@ from qtpy.QtCore import Slot, Signal
 from PyQt5 import QtHelp
 
 from .rendering import Renderer
-from ..dsp.tracking import Track
-from ..dsp import processing
+from dsp.tracking import Track
+from dsp import processing
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

@@ -3,7 +3,7 @@ from typing import List, Optional, Tuple, DefaultDict
 from copy import deepcopy
 
 from . import rendering
-from ..dsp import tracking
+from dsp import tracking
 
 
 class UnknownRendererError(Exception):

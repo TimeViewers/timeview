@@ -10,10 +10,7 @@ from timeit import default_timer as timer
 
 # 3rd party
 import numpy as np
-# TODO remove pyqt5 dependency (see issue #41)
-#  https://github.com/spyder-ide/qtpy/issues/127
-from PyQt5 import QtHelp
-from qtpy import QtWidgets, QtGui, QtCore
+from qtpy import QtWidgets, QtGui, QtCore, QtHelp
 from qtpy.QtCore import Slot, Signal
 import pyqtgraph as pg
 
@@ -27,8 +24,8 @@ from .dialogs import ProcessingDialog, About, HelpBrowser, InfoDialog, RenderDia
 from .view_table import ViewTable
 from .model import Model, View, Panel
 from .rendering import Partition
-from ..dsp import processing, tracking
-from ..manager.dataset_manager import ManagerWindow
+from dsp import processing, tracking
+from manager.dataset_manager import ManagerWindow
 
 
 CONFIG_PATH = Path(__file__).with_name('config.json')
@@ -1117,6 +1114,9 @@ class TimeView(object):  # Application - here's still the best place for it meth
                     wav.max = f.getPhysicalMaximum(index)
                     wav.unit = f.getPhysicalDimension(index)
                     self.add_view(wav, panel_index=panel_index, y_min=wav.min, y_max=wav.max)
+        elif file.suffix == '.xdf':
+            import openxdf
+            pass
         else:
             try:
                 track_obj = tracking.Track.read(file)

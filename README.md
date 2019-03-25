@@ -36,36 +36,23 @@ An introductory video is available at: https://vimeo.com/245480108
 
 Installation
 -
-From an empty python 3.6 python environment run
+From an empty python 3.6+ python environment run
 
 ```
 $ pip install git+https://github.com/lxkain/timeview
 $ timeview
+$ timeview -h
 ```
 
 Development Environment
 -
-To configure a development environment to develop timeview, we suggest using `virtualenv`
+In your 3.6+ python environment run
 
 ```
 $ git clone https://github.com/lxkain/timeview.git timeview
-$ virtualenv timeview -p python3
-$ source timeview/bin/activate
-$ pip install -e timeview
-
-# to install test dependencies
-$ pip install -e "timeview[test]
+$ cd timeview/timeview
+$ python __main__.py
 ```
-
-
-Starting the Application
--
-After successful installation,
-you can start the application by running the TimeView Application Launcher or Script that is in the same folder as the installation script.
-(Note that the Application Launcher or scripts should not be moved from their original location; creating shortcuts or links to them should be fine.)
-Advanced users can also run the application from the command line, with optional arguments controlling startup behavior;
-for usage information, add the "-h" switch.
-
 
 Help
 -

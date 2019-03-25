@@ -1,10 +1,9 @@
 from setuptools import setup
 
-requirements = ["intel-numpy",
+requirements = ["numpy", #""intel-numpy",
                 "scipy",
                 "sqlalchemy",
                 "numba",
-                "pyqt5",
                 "qtpy",
                 "pyqtgraph",
                 "qtawesome",
@@ -20,8 +19,8 @@ setup(
     name='TimeView',
     version='0.1.0',
     description="A GUI application to view and analyze time series signal data",
-    author=["Ognyan Moore", "Alex Kain"],
-    author_email=['ognyan.moore@gmail.com', 'lxkain@gmail.com'],
+    author=["Alexander Kain", "Ognyan Moore"],
+    author_email=['lxkain@gmail.com', 'ognyan.moore@gmail.com'],
     url='https://github.com/lxlain/timeview',
     keywords='timeview gui pyqt signal spectrogram',
     classifiers=[

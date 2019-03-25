@@ -9,7 +9,7 @@ from pathlib import Path
 import argparse
 
 # from .api import TimeView
-from timeview.gui import TimeView
+from gui import TimeView
 
 
 def parse(args):
@@ -29,7 +29,7 @@ def parse(args):
 def main():
     configurations = ['default']  # , 'labeling']
     parser = argparse.ArgumentParser(description=__doc__,
-                                     epilog="© Copyright 2009-2017, TimeView Developers", prog='TimeView')
+                                     epilog="© Copyright 2009-2019, TimeView Developers", prog='TimeView')
     parser.add_argument('-c', '--configuration', type=str, default='default', choices=configurations)
     parser.add_argument('path', type=str, nargs='*', help='files to load')
     parser.set_defaults(func=parse)
