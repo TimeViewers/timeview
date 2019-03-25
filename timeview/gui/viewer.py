@@ -935,7 +935,7 @@ class Viewer(QtWidgets.QMainWindow):
                 QtWidgets.QFileDialog.getOpenFileNames(self,
                                                       "Add Track to Panel",
                                                       self.application.config['working_directory'],
-                                                      "Track and EDF Files (*.wav *.lab *.tmv *.edf);;\
+                                                      "Track and X/EDF Files (*.wav *.lab *.tmv *.xdf *.edf);;\
                                                       All Files (*)",
                                                       options=QtWidgets.QFileDialog.Options())
         if isinstance(file_name, str):
@@ -1101,6 +1101,7 @@ class TimeView(object):  # Application - here's still the best place for it meth
                                                              **kwargs)
 
     def add_view_from_file(self, file: Path, panel_index: int=None):
+        # TODO: both edf and xdf should be moved to tracking!!!
         if file.suffix == '.edf':
             import pyedflib
             with pyedflib.EdfReader(str(file)) as f:
@@ -1116,7 +1117,19 @@ class TimeView(object):  # Application - here's still the best place for it meth
                     self.add_view(wav, panel_index=panel_index, y_min=wav.min, y_max=wav.max)
         elif file.suffix == '.xdf':
             import openxdf
-            pass
+            xdf = openxdf.OpenXDF(file)
+            signals = openxdf.Signal(xdf, file.with_suffix('.nkamp'))
+            # TODO: automate this, why are the xdf.header names different from signals.list_channels?
+            for label in ['ECG', 'Chin']:
+                logger.info(f'reading {label} channel')
+                sig = signals.read_file(label)[label]
+                wav = tracking.Wave(sig.ravel(), 200)
+                wav.label = label
+                wav.path = file.with_name(file.stem + '-' + label + '.wav')
+                wav.min = -3200
+                wav.max = 3200
+                wav.unit = '1'
+                self.add_view(wav, panel_index=panel_index, y_min=wav.min, y_max=wav.max)
         else:
             try:
                 track_obj = tracking.Track.read(file)
