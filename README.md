@@ -49,9 +49,9 @@ Development Environment
 In your 3.6+ python environment run
 
 ```
-$ git clone https://github.com/lxkain/timeview.git timeview
-$ cd timeview/timeview
-$ python __main__.py
+$ git clone https://github.com/lxkain/timeview.git
+$ cd timeview
+$ python timeview.py
 ```
 
 Help
