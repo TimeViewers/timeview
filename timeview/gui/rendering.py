@@ -10,7 +10,7 @@ import pyqtgraph as pg
 from qtpy import QtCore, QtGui, QtWidgets
 from qtpy.QtCore import Slot, Signal
 
-from dsp import tracking, dsp, processing
+from ..dsp import tracking, dsp, processing
 from .plot_objects import InfiniteLinePlot
 
 logger = logging.getLogger()
