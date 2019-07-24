@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from ..dsp import tracking, processing
+from ..timeview.dsp import tracking, processing
 
 # see also: http://johnnado.com/pyqt-qtest-example/
 
