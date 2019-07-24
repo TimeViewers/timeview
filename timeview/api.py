@@ -4,7 +4,4 @@
 # from dsp.tracking import Track, Wave, TimeValue, Partition, TIME_TYPE
 # from dsp import processing
 
-
-from gui.viewer import TimeView
-
-TimeView.
+# from gui.viewer import TimeView
