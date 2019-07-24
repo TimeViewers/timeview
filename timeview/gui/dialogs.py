@@ -2,16 +2,12 @@ import logging
 from typing import Dict, Tuple, Union, Optional
 import time
 
-from qtpy import QtWidgets, QtCore, QtGui
+from qtpy import QtWidgets, QtCore, QtGui, QtHelp
 from qtpy.QtCore import Slot, Signal
 
-# TODO remove pyqt5 dependency (see issue #41)
-#  https://github.com/spyder-ide/qtpy/issues/127
-from PyQt5 import QtHelp
-
 from .rendering import Renderer
-from dsp.tracking import Track
-from dsp import processing
+from ..dsp.tracking import Track
+from ..dsp import processing
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
