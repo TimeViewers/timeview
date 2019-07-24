@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Example of using the TimeView python API to configure the GUI
-
-Activate the conda timeview environment before running this
+Example of using the TimeView python API to configure the GUI and start it
 """
 
 import sys
@@ -11,11 +9,9 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.append(str(Path(__file__).resolve().parents[1]))
+sys.path.insert(1, str(Path(__file__).resolve().parents[1]))
 from timeview.api import Track, Wave, TimeView
 
-
-# example setup
 
 # read from disk
 wav = Track.read(Path(__file__).with_name('speech-mwm.wav'))

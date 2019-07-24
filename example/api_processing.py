@@ -6,6 +6,8 @@ Example of using the TimeView python API to process files without the GUI
 Activate the conda timeview environment before running this
 """
 
+# TODO: this should be moved to signalworks, and plugins should be defined there
+
 import sys
 from pathlib import Path
 
