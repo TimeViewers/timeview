@@ -719,7 +719,7 @@ class Partition(Renderer):
                                             emit_signal=True)
         self.item.updatePartitionPosition.emit(index)
 
-    @Slot(pg.ViewBox, Tuple, name='refreshBounds')
+    #TODO: need this? @Slot(pg.ViewBox, Tuple, name='refreshBounds')
     def refreshBounds(self, _, xrange: Tuple[float, float]):
         # determine the lines in the view
         x_min, x_max = xrange
