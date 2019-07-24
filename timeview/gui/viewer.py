@@ -24,8 +24,8 @@ from .dialogs import ProcessingDialog, About, HelpBrowser, InfoDialog, RenderDia
 from .view_table import ViewTable
 from .model import Model, View, Panel
 from .rendering import Partition
-from dsp import processing, tracking
-from manager.dataset_manager import ManagerWindow
+from ..dsp import processing, tracking
+from ..manager.dataset_manager import ManagerWindow
 
 
 CONFIG_PATH = Path(__file__).with_name('config.json')

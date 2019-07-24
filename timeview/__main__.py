@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 TimeView CLI and GUI Application
 """
