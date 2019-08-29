@@ -306,7 +306,7 @@ class DisplayPanel(QtWidgets.QWidget):
         new_view = self.panel.new_view(track,
                                        renderer_name=renderer_name,
                                        **kwargs)
-        self.view_table.addView(new_view)
+        self.view_table.addView(new_view, setColor='color' not in kwargs)
         self.main_window.evalTrackMenu()
         self.main_window.resetEnabledProcessors()
 
