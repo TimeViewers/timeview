@@ -2,7 +2,6 @@
 TimeView CLI and GUI Application
 """
 
-import logging
 from pathlib import Path
 import argparse
 

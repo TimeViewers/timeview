@@ -539,7 +539,7 @@ class Viewer(QtWidgets.QMainWindow):
         if self.synchronized:
             reference_view_range = self.reference_plot.viewRange()[0]
             assert all([reference_view_range == frame.displayPanel.pw.main_vb.viewRange()[0]
-                        for frame in self.frames])
+                        for frame in self.frames]), 'We are looking into this bug'
 
     def getSelectedPanel(self) -> Panel:
         return self.model.selected_panel

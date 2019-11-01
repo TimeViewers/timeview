@@ -421,6 +421,26 @@ class F0Analyzer(Processor):
         return f0, dop, vox
 
 
+class Differentiator(Processor):
+    name = "Differentiator"
+    acquire = {'wave': tracking.Wave}
+
+    def __init__(self):
+        super().__init__()
+        self.parameters = {}
+
+    def process(self, **kwargs) -> Tuple[tracking.Wave]:
+        Processor.process(self, **kwargs)
+        wav: tracking.Wave = self.data['wave']
+        trk = tracking.Wave(wav.value.copy(), wav.fs, wav.duration, path=wav.path.with_name(wav.path.stem + '-diff'))
+        trk.value = np.gradient(trk.value)
+        trk.max = wav.max
+        trk.min = wav.min
+        trk.unit = wav.unit
+        trk.label = wav.label
+        return trk,
+
+
 class PeakTracker(Processor):
     name = 'Peak Tracker'
     acquire = {'wave': tracking.Wave}
@@ -470,7 +490,7 @@ class PeakTracker(Processor):
                                         tracking.TimeValue.default_suffix))
         trk.min = 0
         trk.max = wav.fs / 2
-        trk.unit ='Hz'
+        trk.unit = 'Hz'
         trk.label = 'frequency'
         return trk,
 
